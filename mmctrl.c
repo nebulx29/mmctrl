@@ -21,10 +21,9 @@
 #define PRESS_DELAY 1000
 #define PIN_SIG_WAIT 50
 
-// *** GLOBAL VARIABLES ***
+// *** CONSTANTS ***
 const int PINS[]    = { 128, 129, 130, 131, 132, 133, 134, 135 };
-int SIG_RCVD[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
-char *CMDS[]   = {
+const char *CMDS_TEST[]   = {
 				"date +\"%Y%m%d_%H%M%S GPIO 128 (Key 0) pressed\" >> /var/log/mmctrl/mmctrl.log",
 				"date +\"%Y%m%d_%H%M%S GPIO 129 (Key 1) pressed\" >> /var/log/mmctrl/mmctrl.log",
 				"date +\"%Y%m%d_%H%M%S GPIO 130 (Key 2) pressed\" >> /var/log/mmctrl/mmctrl.log",
@@ -35,6 +34,19 @@ char *CMDS[]   = {
 				"date +\"%Y%m%d_%H%M%S GPIO 135 (Key 7) pressed\" >> /var/log/mmctrl/mmctrl.log"	
 				};
 
+const char *CMDS[]   = {
+				"date +\"%Y%m%d_%H%M%S GPIO 128 (Key 0) pressed. No action assigned.\" >> /var/log/mmctrl/mmctrl.log",
+				"date +\"%Y%m%d_%H%M%S GPIO 129 (Key 1) pressed. No action assigned.\" >> /var/log/mmctrl/mmctrl.log",
+				"date +\"%Y%m%d_%H%M%S GPIO 130 (Key 2) pressed. Executing mm-start.sh \" ; /home/pi/bin/mm-start.sh >> /var/log/mmctrl/mmctrl.log",
+				"date +\"%Y%m%d_%H%M%S GPIO 131 (Key 3) pressed. Executing mm-stop.sh \" ; /home/pi/bin/mm-stop.sh  >> /var/log/mmctrl/mmctrl.log",
+				"date +\"%Y%m%d_%H%M%S GPIO 132 (Key 4) pressed. No action assigned.\" >> /var/log/mmctrl/mmctrl.log",
+				"date +\"%Y%m%d_%H%M%S GPIO 133 (Key 5) pressed. No action assigned.\" >> /var/log/mmctrl/mmctrl.log",
+				"date +\"%Y%m%d_%H%M%S GPIO 134 (Key 6) pressed. Executing reboot\" ; sudo shutdown -r now >> /var/log/mmctrl/mmctrl.log",
+				"date +\"%Y%m%d_%H%M%S GPIO 135 (Key 7) pressed. Executing shutdown\" ; sudo shutdown -h now >> /var/log/mmctrl/mmctrl.log"	
+				};				
+
+// *** GLOBAL VARIABLES ***				
+int SIG_RCVD[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 char timestamp[TIMESTAMP_LENGTH];
 
 // *** FUNCTION DECLARATIONS ***

@@ -1,15 +1,16 @@
 
 LIBS=-lm -lwiringPi
 CFLAGS=
-BINARY=/home/pi/bin/mmctrl
+BINARY=mmctrl
+INSTALLPATH=/home/pi/bin
 
 all: clean compile install
 
 compile:
-	gcc $(LIBS) $(CFLAGS) -o mmctrl mmctrl.c
+	gcc $(LIBS) $(CFLAGS) -o $(BINARY) mmctrl.c
 
 install:
-	cp /mnt/pishare/workspace/mmctrl/mmctrl $(BINARY)
+	cp $(BINARY) $(INSTALLPATH)/
 	chmod +x $(BINARY)
 
 run:
@@ -17,5 +18,5 @@ run:
 
 clean:
 	rm -f *.o
-	rm ./mmctrl
-	rm $(BINARY)
+	rm -f ./$(BINARY)
+
